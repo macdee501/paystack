@@ -20,3 +20,17 @@ export async  function getProducts():Promise<Product[]>
         return [];
     }
 }
+
+export async function getProductById(id:string):Promise<Product| null>
+{
+try
+{
+    const response = await databases.getDocument(DATABASE_ID, TABLE_ID, id);
+    return response as Product;
+}
+catch(error)
+{
+    console.error('Error fetching product by id:', error);
+    return null;
+}
+}
